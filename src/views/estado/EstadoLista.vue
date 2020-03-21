@@ -1,8 +1,8 @@
 <template>
-  <menu-de-rotas>Home</menu-de-rotas>
+  <menu-de-rotas>Estados</menu-de-rotas>
 </template>
 <script>
-import MenuDeRotas from './../components/MenuDeRotas'
+import MenuDeRotas from '../../components/MenuDeRotas'
 export default {
   components: {
     MenuDeRotas
