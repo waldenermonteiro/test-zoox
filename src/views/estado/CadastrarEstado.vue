@@ -7,9 +7,9 @@
         </b-alert>
         <b-form-group id="input-group-1" label="Nome do Estado*:" label-for="input-1">
           <b-form-input
-            @input="$v.form.nome.$touch"
-            :state="$v.form.nome.$error === false ? null : false"
-            v-model="form.nome"
+            @input="$v.form.nomeEstado.$touch"
+            :state="$v.form.nomeEstado.$error === false ? null : false"
+            v-model="form.nomeEstado"
             required
             placeholder="Digite o nome do estado"
           ></b-form-input>
@@ -25,6 +25,7 @@
             type="email"
             required
             placeholder="Digite a abreviação do estado. Ex: PA"
+            maxLength="2"
           ></b-form-input>
           <b-form-invalid-feedback id="input-live-feedback">
             O campo Abreviação do Estado é obrigatório
@@ -74,9 +75,20 @@ export default {
       this.$v.form.$reset()
       this.$refs.modalCadastrarEstado.hide()
     },
+    setarDadosNoForm (estado) {
+      this.showModal()
+      this.form = { ...estado }
+    },
     cadastrarEstado () {
       try {
         this.verifiyValidations()
+        this.$createOrUpdate({
+          urlDispatch: 'Estado/cadastrar',
+          messages: 'Estado cadastrado com sucesso',
+          callback: () => {
+            this.hideModal()
+          }
+        })
       } catch (error) {
         this.error = error
       }
