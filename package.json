@@ -14,8 +14,8 @@
     "core-js": "^3.6.4",
     "sweetalert": "^2.1.2",
     "vue": "^2.6.11",
-    "vue-loading-overlay": "^3.3.2",
     "vue-router": "^3.1.5",
+    "vuejs-loading-plugin": "^1.0.51",
     "vuelidate": "^0.7.5",
     "vuex": "^3.1.2"
   },
