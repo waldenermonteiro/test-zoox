@@ -40,7 +40,7 @@
       <template v-slot:cell(name)="row"> {{ row.value.first }} {{ row.value.last }} </template>
 
       <template v-slot:cell(actions)="row">
-        <b-button size="sm" variant="info" @click="editarEstado()" class="mr-1"> <b-icon icon="pencil"></b-icon> </b-button>
+        <b-button size="sm" variant="info" @click="editarEstado(row)" class="mr-1"> <b-icon icon="pencil"></b-icon> </b-button>
         <b-button size="sm" variant="danger" @click="excluirEstado(row.item, row.index)"> <b-icon icon="trash"></b-icon> </b-button>
       </template>
 
@@ -92,14 +92,14 @@ export default {
     novoEstado () {
       this.$refs.CadastrarEstado.showModal()
     },
-    editarEstado () {
-      this.$refs.EditarEstado.showModal()
+    editarEstado (estado) {
+      this.$refs.EditarEstado.setarDadosNoForm(estado.item)
     },
     excluirEstado () {
       this.$setDialogQuestion({
         title: 'Excluir estado',
         message: 'Tem certeza que deseja apagar o estado Tal?',
-        callback: () => this.$remove({ urlDispatch: 'Estado/excluir' })
+        callback: () => this.$remove({ urlDispatch: 'Estado/excluir', messages: 'Estado excluído com sucesso' })
       })
     }
   }
