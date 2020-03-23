@@ -11,7 +11,7 @@ export default {
     },
     setUniqueNotifyDanger (message) {
       swal({
-        title: 'Good job!',
+        title: 'Bom trabalho!',
         text: message,
         icon: 'success'
       })
@@ -23,7 +23,7 @@ export default {
     },
     $setNotifySuccess (message) {
       swal({
-        title: 'Good job!',
+        title: 'Bom trabalho!',
         text: message,
         icon: 'success'
       })
@@ -31,16 +31,16 @@ export default {
 
     $setNotifyInfo (message) {
       swal({
-        title: 'Good job!',
+        title: 'Sistema Informa!',
         text: message,
-        icon: 'success'
+        icon: 'info'
       })
     },
     $setNotifyWarning (message) {
       swal({
-        title: 'Good job!',
+        title: 'Alerta!',
         text: message,
-        icon: 'success'
+        icon: 'warning'
       })
     },
     $setDialogQuestion (obj) {
@@ -55,14 +55,6 @@ export default {
           obj.callback()
         }
       })
-      //   Dialog.create({
-      //     title: `${obj.title}`,
-      //     message: `${obj.message}`,
-      //     cancel: { label: 'Cancelar', color: 'negative', icon: 'cancel' },
-      //     ok: { label: 'Sim', class: 'text-white bg-blue-gold', iconRight: 'save' }
-      //   }).onOk(() => {
-      //     obj.callback()
-      //   })
     }
   }
 }
