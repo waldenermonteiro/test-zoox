@@ -5,14 +5,13 @@ import store from './store'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import Loading from 'vue-loading-overlay'
-import 'vue-loading-overlay/dist/vue-loading.css'
 import NotifyMessage from './mixins/notify-messagen.mixin'
 import Vuelidate from 'vuelidate'
+import VueLoading from 'vuejs-loading-plugin'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
-Vue.use(Loading)
+Vue.use(VueLoading)
 Vue.use(Vuelidate)
 Vue.config.productionTip = false
 Vue.mixin({
@@ -29,14 +28,8 @@ Vue.mixin({
   },
   methods: {
     async skeleton (params) {
-      let loader
       if (!params.noLoading) {
-        loader = this.$loading.show({
-          // Optional parameters
-          container: this.fullPage ? null : this.$refs.formContainer,
-          canCancel: true,
-          onCancel: this.onCancel
-        })
+        this.$loading(true)
       }
       try {
         await store.dispatch(params.urlDispatch, params.params)
@@ -45,7 +38,7 @@ Vue.mixin({
       } catch (errors) {
         this.$setNotifyDanger(errors)
       } finally {
-        loader.hide()
+        this.$loading(false)
       }
     },
     async $list (params) {
