@@ -22,6 +22,7 @@ const providers = [
   '@adonisjs/validator/providers/ValidatorProvider',
   '@adonisjs/antl/providers/AntlProvider',
   'adonis-swagger/providers/SwaggerProvider',
+  'lucid-mongo/providers/LucidMongoProvider',
   '@waldenermonteiro/adonis-lucid-soft-deletes/providers/SoftDeletesProvider',
 ]
 
@@ -35,7 +36,8 @@ const providers = [
 |
 */
 const aceProviders = [
-  '@adonisjs/lucid/providers/MigrationsProvider'
+  '@adonisjs/lucid/providers/MigrationsProvider',
+  'lucid-mongo/providers/MigrationsProvider'
 ]
 
 /*
