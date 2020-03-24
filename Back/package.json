@@ -30,11 +30,27 @@
     "@adonisjs/validator": "^5.0.6",
     "@waldenermonteiro/adonis-lucid-soft-deletes": "^0.1.4",
     "adonis-swagger": "^1.2.9",
+    "lucid-mongo": "^3.1.6",
     "pg": "^7.12.1",
     "sqlite3": "^4.0.9"
   },
   "devDependencies": {},
   "autoload": {
     "App": "./app"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "printWidth": 162,
+    "overrides": [
+      {
+        "files": [
+          "*.css",
+          "*.scss"
+        ],
+        "options": {
+          "tabWidth": 3
+        }
+      }
+    ]
   }
 }
