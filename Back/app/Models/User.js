@@ -3,14 +3,10 @@
 /** @type {import('@adonisjs/framework/src/Hash')} */
 const Hash = use('Hash')
 
-/** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 class User extends Model {
   static boot () {
     super.boot()
-
-    this.addTrait('@provider:Lucid/SoftDeletes')
-
     /**
      * A hook to hash the user password before saving
      * it to the database.
@@ -20,9 +16,6 @@ class User extends Model {
         userInstance.password = await Hash.make(userInstance.password)
       }
     })
-  }
-  static get dates () {
-    return super.dates.concat(['deleted_at'])
   }
 
   /**
@@ -37,9 +30,6 @@ class User extends Model {
    */
   tokens () {
     return this.hasMany('App/Models/Token')
-  }
-  profile () {
-    return this.hasOne('App/Models/Profile')
   }
 }
 
