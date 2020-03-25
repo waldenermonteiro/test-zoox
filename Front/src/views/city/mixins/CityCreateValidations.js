@@ -6,8 +6,8 @@ export default {
         ...this.formyCopy
       },
       formyCopy: {
-        nomeCidade: '',
-        estado: null
+        name: '',
+        state_id: ''
       }
     }
   },
@@ -21,10 +21,10 @@ export default {
   },
   validations: {
     form: {
-      nomeCidade: {
+      name: {
         required
       },
-      estado: {
+      state_id: {
         required
       }
     }
