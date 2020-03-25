@@ -1,5 +1,5 @@
 <template>
-  <menu-de-rotas>
+  <nav-routes>
     <b-row>
       <b-col lg="4" class="my-1">
         <b-form-group label="Filtro" label-cols-sm="3" label-align-sm="right" label-size="sm" label-for="filterInput" class="mb-0">
@@ -52,15 +52,15 @@
     </b-table>
     <state-create ref="StateCreate" type="Cadastrar"></state-create>
     <state-create ref="StateUpdate" type="Editar"></state-create>
-  </menu-de-rotas>
+  </nav-routes>
 </template>
 <script>
 import { mapState } from 'vuex'
-import MenuDeRotas from '../../components/MenuDeRotas'
+import NavRoutes from '../../components/NavRoutes'
 import StateCreate from './StateCreate'
 export default {
   components: {
-    MenuDeRotas,
+    NavRoutes,
     StateCreate
   },
   data () {
