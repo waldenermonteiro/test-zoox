@@ -11,21 +11,11 @@ import VueLoading from 'vuejs-loading-plugin'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
-Vue.use(VueLoading)
+Vue.use(VueLoading, { text: 'Carregando' })
 Vue.use(Vuelidate)
 Vue.config.productionTip = false
 Vue.mixin({
   mixins: [NotifyMessage],
-  data () {
-    return {
-      atributosCarregamento: {
-        container: this.fullPage ? null : this.$refs.formContainer,
-        canCancel: true,
-        onCancel: this.onCancel
-      },
-      carregamento: this.$loading
-    }
-  },
   methods: {
     async skeleton (params) {
       if (!params.noLoading) {

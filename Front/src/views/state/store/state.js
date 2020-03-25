@@ -1,14 +1,20 @@
 export default {
-  items: [{ nomeEstado: 'Pará', abrev: 'PA' }],
+  states: [],
   fields: [
     {
-      key: 'nomeEstado',
-      label: 'Nome Estado',
+      key: '_id',
+      label: 'Id',
       sortable: true,
-      sortDirection: 'desc'
+      class: 'text-center'
     },
     {
-      key: 'abrev',
+      key: 'name',
+      label: 'Nome Estado',
+      sortable: true,
+      class: 'text-center'
+    },
+    {
+      key: 'abbreviation',
       label: 'Abreviação',
       sortable: true,
       class: 'text-center'

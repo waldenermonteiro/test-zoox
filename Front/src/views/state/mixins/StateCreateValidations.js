@@ -6,8 +6,8 @@ export default {
         ...this.formyCopy
       },
       formyCopy: {
-        nomeEstado: '',
-        abrev: ''
+        name: '',
+        abbreviation: ''
       }
     }
   },
@@ -21,10 +21,10 @@ export default {
   },
   validations: {
     form: {
-      nomeEstado: {
+      name: {
         required
       },
-      abrev: {
+      abbreviation: {
         required
       }
     }
