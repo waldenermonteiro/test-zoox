@@ -10,10 +10,9 @@ class StoreCity {
     return ['name', 'state_id']
   }
   rules(cityId) {
-    cityId = cityId || 0
     return {
-      name: `required|unique:cities,name,id,${cityId}|max:100`,
-      state_id: 'required|exists:states,id'
+      name: `required|unique:cities,name|max:100`,
+      state_id: 'required|exists:states,_id'
     }
   }
   get messages() {
@@ -21,7 +20,8 @@ class StoreCity {
       'name.required': 'O campo nome é obrigatório.',
       'name.unique': 'Já existe uma cidade com esse nome, por favor, escolha outro.',
       'name.max': 'O campo nome aceita até 100 caracteres, por favor, tente novamente.',
-      'state_id.required': 'O campo estado é obrigatório.'
+      'state_id.required': 'O campo estado é obrigatório.',
+      'state_id.exists': 'Nâo existe um estado com este id, por favor, tente novamente'
     }
   }
 }
