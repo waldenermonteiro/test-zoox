@@ -23,7 +23,6 @@ const providers = [
   '@adonisjs/antl/providers/AntlProvider',
   'adonis-swagger/providers/SwaggerProvider',
   'lucid-mongo/providers/LucidMongoProvider',
-  '@waldenermonteiro/adonis-lucid-soft-deletes/providers/SoftDeletesProvider',
 ]
 
 /*
