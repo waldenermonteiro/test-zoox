@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Estado from '../views/estado/EstadoLista.vue'
+import State from '../views/state/StateList.vue'
 import Cidade from '../views/cidade/CidadeLista.vue'
 
 Vue.use(VueRouter)
@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/estados',
     name: 'Estados',
-    component: Estado
+    component: State
   },
   {
     path: '/cidades',
