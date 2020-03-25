@@ -6,6 +6,7 @@ export default class Base {
     this.service = HTTPClient
     this.statusResponse = statusResponse
   }
+
   list = async ($params = '') => {
     try {
       const response = await this.service.get(this.api, { params: $params })
@@ -13,24 +14,26 @@ export default class Base {
     } catch (error) {
       throw statusResponse(error, 'list')
     }
-  }
-  get = async ($id) => {
+  };
+
+  get = async $id => {
     try {
       const response = await this.service.get(`${this.api}/${$id}`)
       return response
     } catch (error) {
       throw statusResponse(error, 'get', 'item')
     }
-  }
+  };
 
-  create = async ($data) => {
+  create = async $data => {
     try {
       const response = await this.service.post(this.api, $data)
       return response
     } catch (error) {
       throw statusResponse(error, 'create')
     }
-  }
+  };
+
   update = async ($data, $id) => {
     try {
       const response = await this.service.put(`${this.api}/${$id}`, $data)
@@ -38,23 +41,26 @@ export default class Base {
     } catch (error) {
       throw statusResponse(error, 'update')
     }
-  }
-  updateNoId = async ($data) => {
+  };
+
+  updateNoId = async $data => {
     try {
       const response = await this.service.put(`${this.api}`, $data)
       return response
     } catch (error) {
       throw statusResponse(error, 'update')
     }
-  }
-  remove = async ($id) => {
+  };
+
+  remove = async $id => {
     try {
       const response = await this.service.delete(`${this.api}/${$id}`)
       return response
     } catch (error) {
       throw statusResponse(error, 'remove')
     }
-  }
+  };
+
   reportPdfGet = async (api, $params) => {
     try {
       const response = await this.service.get(api, { params: $params, headers: { Accept: 'application/pdf' }, responseType: 'arraybuffer' })
@@ -62,7 +68,8 @@ export default class Base {
     } catch (error) {
       throw this.statusResponse(error, 'report')
     }
-  }
+  };
+
   reportExcelGet = async (api, $params) => {
     try {
       const response = await this.service.get(api, { params: $params, headers: { Accept: 'application/excel' }, responseType: 'arraybuffer' })
@@ -70,7 +77,8 @@ export default class Base {
     } catch (error) {
       throw this.statusResponse(error, 'report')
     }
-  }
+  };
+
   reportPdfPost = async (api, $params) => {
     try {
       const response = await this.service.post(api, $params, { headers: { Accept: 'application/pdf' }, responseType: 'arraybuffer' })
@@ -78,7 +86,8 @@ export default class Base {
     } catch (error) {
       throw this.statusResponse(error, 'report')
     }
-  }
+  };
+
   reportExcelPost = async (api, $params) => {
     try {
       const response = await this.service.post(api, $params, { headers: { Accept: 'application/excel' }, responseType: 'arraybuffer' })
@@ -86,5 +95,5 @@ export default class Base {
     } catch (error) {
       throw this.statusResponse(error, 'report')
     }
-  }
+  };
 }
