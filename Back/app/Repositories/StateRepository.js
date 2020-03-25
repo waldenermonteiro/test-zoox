@@ -12,12 +12,13 @@ class StateRepository extends BaseRepository {
   async destroy({ request, response, params }) {
     try {
       const state = await this.Model.findByOrFail("_id", params.id);
-      const verifyStateUse = await this.City.query().where("state_id", params.id).first();
+      const verifyStateUse = await this.City.query()
+        .where("state_id", params.id)
+        .first();
       if (verifyStateUse !== null) {
-        console.log("teste");
         return await response.badRequest({
           status: 400,
-          message: `Estado ${state.name} sendo utilizado pelo cliente`
+          errors: [{ message: `Estado ${state.name} está sendo utilizado.` }]
         });
       }
       await state.delete();
