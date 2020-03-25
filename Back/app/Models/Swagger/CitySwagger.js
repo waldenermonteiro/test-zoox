@@ -7,8 +7,7 @@
 *        name:
 *          type: string
 *        state_id:
-*         type: integer
-*         format: "int32"
+*         type: string
 *      required:
 *        - name
 *        - state_id
