@@ -1,21 +1,17 @@
-const Database = use('Database')
-
+const Database = use("Database");
+const { ObjectId } = require("mongodb");
 const existsFn = async (data, field, message, args, get) => {
-  const value = get(data, field)
+  const value = get(data, field);
   if (!value) {
-    /**
-     * skip validation if value is not defined. `required` rule
-     * should take care of it.
-    */
-    return
+    return;
   }
 
-  const [table, column] = args
-  const row = await Database.table(table).where(column, value).first()
-
+  const [table, column] = args;
+  const row = await Database.collection(table)
+    .where({ _id: ObjectId(value) })
+    .findOne();
   if (!row) {
-    throw message
+    throw message;
   }
-}
-module.exports = existsFn
-
+};
+module.exports = existsFn;
