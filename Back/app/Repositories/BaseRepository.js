@@ -23,7 +23,7 @@ class BaseRepository {
   }
   async show({ request, response, params }) {
     try {
-      const item = await this.Model.findByOrFail("id", params.id);
+      const item = await this.Model.findByOrFail("_id", params.id);
       return response.ok({
         status: 200,
         data: item
@@ -53,7 +53,7 @@ class BaseRepository {
     const data = request.only(this.Validator.inputs);
     const validation = await validateAll(data, this.Validator.rules(params.id), this.Validator.messages);
     try {
-      const item = await this.Model.findByOrFail("id", params.id);
+      const item = await this.Model.findByOrFail("_id", params.id);
       await item.merge(data);
       await item.save();
       return response.ok({
@@ -67,7 +67,7 @@ class BaseRepository {
   }
   async destroy({ request, response, params }) {
     try {
-      const item = await this.Model.findBy("id", params.id);
+      const item = await this.Model.findBy("_id", params.id);
       await item.delete();
       return await response.ok({
         status: 200,
