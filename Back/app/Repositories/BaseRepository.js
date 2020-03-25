@@ -67,11 +67,11 @@ class BaseRepository {
   }
   async destroy({ request, response, params }) {
     try {
-      const item = await this.Model.findBy("_id", params.id);
+      const item = await this.Model.findByOrFail("_id", params.id);
       await item.delete();
       return await response.ok({
         status: 200,
-        message: `${this.Validator.name} excluído(a) com sucesso`
+        message: `${this.Validator.name} ${item.name || ''} excluído(a) com sucesso`
       });
     } catch (error) {
       return this.messageNotExistItem(response);
