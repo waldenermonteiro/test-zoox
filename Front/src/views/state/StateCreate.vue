@@ -1,5 +1,5 @@
 <template>
-  <b-modal ref="modalCadastrarEstado" :title="`${type} Estado`">
+  <b-modal ref="modalStateCreate" :title="`${!form._id ? 'Cadastrar' : 'Editar'} Estado`" @hidden="hideModal()" no-close-on-esc no-close-on-backdrop>
     <div class="d-block">
       <b-form>
         <b-alert :show="$v.form.$error" variant="warning">
@@ -7,9 +7,9 @@
         </b-alert>
         <b-form-group id="input-group-1" label="Nome do Estado*:" label-for="input-1">
           <b-form-input
-            @input="$v.form.nomeEstado.$touch"
-            :state="$v.form.nomeEstado.$error === false ? null : false"
-            v-model="form.nomeEstado"
+            @input="$v.form.name.$touch"
+            :state="$v.form.name.$error === false ? null : false"
+            v-model="form.name"
             required
             placeholder="Digite o nome do estado"
           ></b-form-input>
@@ -19,9 +19,9 @@
         </b-form-group>
         <b-form-group id="input-group-1" label="Abreviação do Estado*:" label-for="input-1">
           <b-form-input
-            @input="$v.form.abrev.$touch"
-            :state="$v.form.abrev.$error === false ? null : false"
-            v-model="form.abrev"
+            @input="$v.form.abbreviation.$touch"
+            :state="$v.form.abbreviation.$error === false ? null : false"
+            v-model="form.abbreviation"
             type="email"
             required
             placeholder="Digite a abreviação do estado. Ex: PA"
@@ -40,14 +40,14 @@
       <b-button type="reset" variant="" size="sm" class="float-right" @click="onReset()">
         Limpar Campos
       </b-button>
-      <b-button variant="primary" size="sm" class="float-right" @click="cadastrarEstado()">
-        Cadastrar
+      <b-button variant="primary" size="sm" class="float-right" @click="send(form)">
+        {{ !form._id ? "Cadastrar" : "Editar" }}
       </b-button>
     </template>
   </b-modal>
 </template>
 <script>
-import Validations from './mixins/ValidacaoCadastroEstado'
+import Validations from './mixins/StateCreateValidations'
 export default {
   props: {
     type: {
@@ -56,9 +56,7 @@ export default {
   },
   mixins: [Validations],
   data () {
-    return {
-      error: ''
-    }
+    return {}
   },
   methods: {
     countDownChanged (dismissCountDown) {
@@ -68,30 +66,33 @@ export default {
       this.form = { ...this.formCopy }
     },
     showModal () {
-      this.$refs.modalCadastrarEstado.show()
+      this.$refs.modalStateCreate.show()
     },
     hideModal () {
       this.onReset()
       this.$v.form.$reset()
-      this.$refs.modalCadastrarEstado.hide()
+      this.$refs.modalStateCreate.hide()
     },
-    setarDadosNoForm (estado) {
+    setDataInForm (estado) {
       this.showModal()
       this.form = { ...estado }
     },
-    cadastrarEstado () {
-      try {
-        this.verifiyValidations()
-        this.$createOrUpdate({
-          urlDispatch: 'Estado/cadastrar',
-          messages: 'Estado cadastrado com sucesso',
-          callback: () => {
-            this.hideModal()
-          }
-        })
-      } catch (error) {
-        this.error = error
-      }
+    send (form) {
+      this.verifiyValidations()
+      !form._id
+        ? this.structure({ form, description: 'cadastrado', urlDispatch: 'create' })
+        : this.structure({ form, description: 'alterado', urlDispatch: 'update' })
+    },
+    structure ({ form, description, urlDispatch }) {
+      this.$createOrUpdate({
+        urlDispatch: `State/${urlDispatch}`,
+        messages: `Estado ${form.name} ${description} com sucesso`,
+        params: form,
+        callback: () => {
+          this.$list({ urlDispatch: 'State/list' })
+          this.hideModal()
+        }
+      })
     }
   }
 }
