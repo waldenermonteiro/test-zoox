@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import State from '../views/state/StateList.vue'
-import Cidade from '../views/cidade/CidadeLista.vue'
+import City from '../views/city/CityList.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +20,7 @@ const routes = [
   {
     path: '/cidades',
     name: 'Cidades',
-    component: Cidade
+    component: City
   }
 ]
 
