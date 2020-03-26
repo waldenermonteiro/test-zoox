@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Estado from '../views/estado/store'
-
+import State from '../views/state/store'
+import City from '../views/city/store'
 Vue.use(Vuex)
 export default new Vuex.Store({
   modules: {
-    Estado
+    State,
+    City
   }
 })

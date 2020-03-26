@@ -1,25 +1,27 @@
 import swal from 'sweetalert'
 export default {
   methods: {
-    $setNotifyDanger (message) {
-      const uniqueMessage = message.message || message
-      if (Array.isArray(message)) {
-        this.setMultipleNotifyDanger(message)
+    $setNotifyDanger (errors) {
+      const uniqueMessage = errors.message || errors
+      if (Array.isArray(errors)) {
+        this.setMultipleNotifyDanger(errors)
       } else {
         this.setUniqueNotifyDanger(uniqueMessage)
       }
     },
     setUniqueNotifyDanger (message) {
       swal({
-        title: 'Bom trabalho!',
+        title: 'Algo deu errado!',
         text: message,
-        icon: 'success'
+        icon: 'error'
       })
     },
-    setMultipleNotifyDanger (messages) {
-      messages.forEach(message => {
-        this.setUniqueNotifyDanger(message.errorMessage)
+    setMultipleNotifyDanger (errors) {
+      let messageComplete = ''
+      errors.forEach(error => {
+        messageComplete = `${messageComplete} \n - ${error.message}`
       })
+      this.setUniqueNotifyDanger(messageComplete)
     },
     $setNotifySuccess (message) {
       swal({

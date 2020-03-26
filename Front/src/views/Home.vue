@@ -1,11 +1,10 @@
 <template>
-  <menu-de-rotas>Home</menu-de-rotas>
+  <div></div>
 </template>
 <script>
-import MenuDeRotas from './../components/MenuDeRotas'
 export default {
-  components: {
-    MenuDeRotas
+  mounted () {
+    this.$router.push('/estados')
   }
 }
 </script>
