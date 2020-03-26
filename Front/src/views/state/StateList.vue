@@ -40,7 +40,7 @@
       <template v-slot:cell(created_at)="row"> {{ $formatDateBr(row.value) }} </template>
       <template v-slot:cell(updated_at)="row"> {{ $formatDateBr(row.value) }} </template>
       <template v-slot:cell(actions)="row">
-        <b-button size="sm" variant="info" @click="updateState(row)" class="mr-1"> <b-icon icon="pencil"></b-icon> </b-button>
+        <b-button size="sm" variant="info" @click="updateState(row.item)" class="mr-1"> <b-icon icon="pencil"></b-icon> </b-button>
         <b-button size="sm" variant="danger" @click="removeState(row.item)"> <b-icon icon="trash"></b-icon> </b-button>
       </template>
 
@@ -106,8 +106,8 @@ export default {
     newState () {
       this.$refs.StateCreate.showModal()
     },
-    updateState (estado) {
-      this.$refs.StateUpdate.setDataInForm(estado.item)
+    updateState (state) {
+      this.$refs.StateUpdate.setDataInForm(state)
     },
     removeState (obj) {
       this.$setDialogQuestion({
