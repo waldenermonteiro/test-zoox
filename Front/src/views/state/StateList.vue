@@ -40,7 +40,7 @@
       <template v-slot:cell(created_at)="row"> {{ $formatDateBr(row.value) }} </template>
       <template v-slot:cell(updated_at)="row"> {{ $formatDateBr(row.value) }} </template>
       <template v-slot:cell(actions)="row">
-        <b-button size="sm" variant="info" @click="updateState(row)" class="mr-1"> <b-icon icon="pencil"></b-icon> </b-button>
+        <b-button size="sm" variant="info" @click="updateState(row.item)" class="mr-1"> <b-icon icon="pencil"></b-icon> </b-button>
         <b-button size="sm" variant="danger" @click="removeState(row.item)"> <b-icon icon="trash"></b-icon> </b-button>
       </template>
 
@@ -50,6 +50,12 @@
             <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
           </ul>
         </b-card>
+      </template>
+      <template v-slot:empty>
+        {{ emptyText }}
+      </template>
+      <template v-slot:emptyfiltered>
+        {{ emptyFilteredText }}
       </template>
     </b-table>
     <state-create ref="StateCreate" type="Cadastrar"></state-create>
@@ -74,9 +80,11 @@ export default {
       totalRows: 1,
       currentPage: 1,
       perPage: 5,
-      sortBy: '',
+      sortBy: 'name',
       sortDesc: false,
-      sortDirection: 'asc'
+      sortDirection: 'asc',
+      emptyText: 'Sem dados cadastrados no momento',
+      emptyFilteredText: 'Busca não encontrada'
     }
   },
   computed: {
@@ -98,8 +106,8 @@ export default {
     newState () {
       this.$refs.StateCreate.showModal()
     },
-    updateState (estado) {
-      this.$refs.StateUpdate.setDataInForm(estado.item)
+    updateState (state) {
+      this.$refs.StateUpdate.setDataInForm(state)
     },
     removeState (obj) {
       this.$setDialogQuestion({
