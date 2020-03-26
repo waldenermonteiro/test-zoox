@@ -52,6 +52,9 @@ class BaseRepository {
   async update({ request, response, params }) {
     const data = request.only(this.Validator.inputs);
     const validation = await validateAll(data, this.Validator.rules(params.id), this.Validator.messages);
+    if (validation.fails()) {
+      return this.messagesValidation(validation, response);
+    }
     try {
       const item = await this.Model.findByOrFail("_id", params.id);
       await item.merge(data);
