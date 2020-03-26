@@ -2,6 +2,12 @@ export default {
   cities: [],
   fields: [
     {
+      key: '_id',
+      label: 'Id',
+      sortable: true,
+      class: 'text-center'
+    },
+    {
       key: 'name',
       label: 'Nome Cidade',
       sortable: true,
@@ -10,6 +16,18 @@ export default {
     {
       key: 'state',
       label: 'Estado',
+      sortable: true,
+      class: 'text-center'
+    },
+    {
+      key: 'created_at',
+      label: 'Data de Criação',
+      sortable: true,
+      class: 'text-center'
+    },
+    {
+      key: 'updated_at',
+      label: 'Data da Última Alteração',
       sortable: true,
       class: 'text-center'
     },
