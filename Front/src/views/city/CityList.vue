@@ -38,6 +38,8 @@
       @filtered="onFiltered"
     >
       <template v-slot:cell(state)="row"> {{ row.value.name }} </template>
+      <template v-slot:cell(created_at)="row"> {{ $formatDateBr(row.value) }} </template>
+      <template v-slot:cell(updated_at)="row"> {{ $formatDateBr(row.value) }} </template>
       <template v-slot:cell(actions)="row">
         <b-button size="sm" variant="info" @click="updateCity(row.item)" class="mr-1"> <b-icon icon="pencil"></b-icon> </b-button>
         <b-button size="sm" variant="danger" @click="removeCity(row.item)"> <b-icon icon="trash"></b-icon> </b-button>
@@ -59,7 +61,9 @@
 import { mapState } from 'vuex'
 import NavRoutes from '../../components/NavRoutes'
 import CityCreate from './CityCreate'
+import masks from '../../mixins/masks.mixin'
 export default {
+  mixins: [masks],
   components: {
     NavRoutes,
     CityCreate
