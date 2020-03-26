@@ -51,6 +51,12 @@
           </ul>
         </b-card>
       </template>
+      <template v-slot:empty>
+        {{ emptyText }}
+      </template>
+      <template v-slot:emptyfiltered>
+        {{ emptyFilteredText }}
+      </template>
     </b-table>
     <state-create ref="StateCreate" type="Cadastrar"></state-create>
     <state-create ref="StateUpdate" type="Editar"></state-create>
@@ -74,9 +80,11 @@ export default {
       totalRows: 1,
       currentPage: 1,
       perPage: 5,
-      sortBy: '',
+      sortBy: 'name',
       sortDesc: false,
-      sortDirection: 'asc'
+      sortDirection: 'asc',
+      emptyText: 'Sem dados cadastrados no momento',
+      emptyFilteredText: 'Busca não encontrada'
     }
   },
   computed: {
